@@ -22,35 +22,120 @@
     <h2 class="page-title">Gallery</h2>
     <p class="page-subtitle">A selection of recent work.</p>
 
-    <section class="gallery">
-  <a class="tile" href="https://picsum.photos/900/1200?random=1" target="_blank" rel="noreferrer">
+<section class="gallery">
+
+  <a class="tile" href="#" data-full="https://picsum.photos/1200/1600?random=1" data-caption="Charcoal Study — 2025">
     <img src="https://picsum.photos/600/800?random=1" alt="Artwork 1">
   </a>
 
-  <a class="tile" href="https://picsum.photos/900/900?random=2" target="_blank" rel="noreferrer">
+  <a class="tile" href="#" data-full="https://picsum.photos/1200/1200?random=2" data-caption="Figure Study — 2024">
     <img src="https://picsum.photos/600/600?random=2" alt="Artwork 2">
   </a>
 
-  <a class="tile" href="https://picsum.photos/900/1400?random=3" target="_blank" rel="noreferrer">
+  <a class="tile" href="#" data-full="https://picsum.photos/1200/1800?random=3" data-caption="Ink Experiment — 2025">
     <img src="https://picsum.photos/600/900?random=3" alt="Artwork 3">
   </a>
 
-  <a class="tile" href="https://picsum.photos/900/700?random=4" target="_blank" rel="noreferrer">
+  <a class="tile" href="#" data-full="https://picsum.photos/1200/900?random=4" data-caption="Urban Sketch — 2024">
     <img src="https://picsum.photos/600/500?random=4" alt="Artwork 4">
   </a>
 
-  <a class="tile" href="https://picsum.photos/900/1100?random=5" target="_blank" rel="noreferrer">
+  <a class="tile" href="#" data-full="https://picsum.photos/1200/1500?random=5" data-caption="Watercolour Study — 2025">
     <img src="https://picsum.photos/600/750?random=5" alt="Artwork 5">
   </a>
 
-  <a class="tile" href="https://picsum.photos/900/800?random=6" target="_blank" rel="noreferrer">
+  <a class="tile" href="#" data-full="https://picsum.photos/1200/1000?random=6" data-caption="Landscape Study — 2024">
     <img src="https://picsum.photos/600/550?random=6" alt="Artwork 6">
   </a>
+
 </section>
+
   </main>
 
   <footer>
-    <p>Alexesketch</p>
+    <p>@alexesketch</p>
   </footer>
+
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+
+  <button class="lb-btn lb-close" id="lbClose">×</button>
+  <button class="lb-btn lb-prev" id="lbPrev">‹</button>
+
+  <figure class="lb-figure">
+    <img id="lbImg">
+    <figcaption id="lbCaption"></figcaption>
+  </figure>
+
+  <button class="lb-btn lb-next" id="lbNext">›</button>
+
+</div>
+
+
+<script>
+
+const tiles = Array.from(document.querySelectorAll('.tile'));
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbCaption = document.getElementById('lbCaption');
+const lbClose = document.getElementById('lbClose');
+const lbPrev = document.getElementById('lbPrev');
+const lbNext = document.getElementById('lbNext');
+
+let currentIndex = 0;
+
+function openLightbox(index){
+  currentIndex = index;
+
+  const tile = tiles[currentIndex];
+  const full = tile.dataset.full;
+  const caption = tile.dataset.caption;
+
+  lbImg.src = full;
+  lbCaption.textContent = caption;
+
+  lightbox.classList.add("is-open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox(){
+  lightbox.classList.remove("is-open");
+  lbImg.src = "";
+  document.body.style.overflow = "";
+}
+
+function showNext(step){
+  const next = (currentIndex + step + tiles.length) % tiles.length;
+  openLightbox(next);
+}
+
+tiles.forEach((tile, i)=>{
+  tile.addEventListener("click", e=>{
+    e.preventDefault();
+    openLightbox(i);
+  });
+});
+
+lbClose.addEventListener("click", closeLightbox);
+lbPrev.addEventListener("click", ()=>showNext(-1));
+lbNext.addEventListener("click", ()=>showNext(1));
+
+lightbox.addEventListener("click", e=>{
+  if(e.target === lightbox){
+    closeLightbox();
+  }
+});
+
+document.addEventListener("keydown", e=>{
+  if(!lightbox.classList.contains("is-open")) return;
+
+  if(e.key === "Escape") closeLightbox();
+  if(e.key === "ArrowRight") showNext(1);
+  if(e.key === "ArrowLeft") showNext(-1);
+});
+
+</script>
+
 </body>
 </html>
