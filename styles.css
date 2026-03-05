@@ -125,3 +125,4 @@ footer {
   .gallery { grid-template-columns: 1fr; }
   .tile img { height: 220px; }
 }
+body { outline: 10px solid hotpink; }
