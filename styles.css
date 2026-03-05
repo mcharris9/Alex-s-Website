@@ -176,3 +176,91 @@ footer {
 @media (max-width: 520px) {
   nav a { margin-left: 14px; }
 }
+/* ---------------- LIGHTBOX ---------------- */
+
+.lightbox{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: rgba(10,10,10,0.85);
+  z-index: 100;
+}
+
+.lightbox.is-open{
+  display: flex;
+}
+
+.lb-figure{
+  margin: 0;
+  max-width: min(1100px, 92vw);
+  max-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#lbImg{
+  width: 100%;
+  height: auto;
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+#lbCaption{
+  color: rgba(255,255,255,0.85);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* navigation buttons */
+
+.lb-btn{
+  position: absolute;
+  border: none;
+  background: rgba(255,255,255,0.12);
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  font-size: 28px;
+  line-height: 44px;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+.lb-btn:hover{
+  background: rgba(255,255,255,0.20);
+  transform: translateY(-1px);
+}
+
+.lb-close{
+  top: 18px;
+  right: 18px;
+  font-size: 30px;
+}
+
+.lb-prev{
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lb-next{
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* mobile adjustments */
+
+@media (max-width: 700px){
+  .lb-prev,
+  .lb-next{
+    display: none;
+  }
+}
