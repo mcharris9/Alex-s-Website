@@ -172,6 +172,8 @@ footer {
 }
 /* ---------------- LIGHTBOX ---------------- */
 
+/* ---------------- LIGHTBOX ---------------- */
+
 .lightbox{
   position: fixed;
   inset: 0;
@@ -180,7 +182,7 @@ footer {
   justify-content: center;
   padding: 28px;
   background: rgba(10,10,10,0.85);
-  z-index: 100;
+  z-index: 9999;
 }
 
 .lightbox.is-open{
@@ -205,13 +207,14 @@ footer {
   box-shadow: 0 20px 60px rgba(0,0,0,0.35);
 }
 
-#lbCaption{
+#lbCaption {
   color: rgba(255,255,255,0.85);
-  font-size: 14px;
   text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+  letter-spacing: 0.5px;
 }
 
-/* navigation buttons */
 
 .lb-btn{
   position: absolute;
@@ -232,62 +235,20 @@ footer {
   transform: translateY(-1px);
 }
 
-.lb-close{
-  top: 18px;
-  right: 18px;
-  font-size: 30px;
-}
-
-.lb-prev{
-  left: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.lb-next{
-  right: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* mobile adjustments */
-
-@media (max-width: 700px){
-  .lb-prev,
-  .lb-next{
-    display: none;
-  }
-}
-.lightbox{
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 28px;
-  background: rgba(10,10,10,0.85);
-  z-index: 999;
-}
-
-.lightbox.is-open{ display: flex; }
-
-.lb-btn{
-  position: absolute;
-  border: none;
-  background: rgba(255,255,255,0.12);
-  color: white;
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  font-size: 28px;
-  line-height: 44px;
-  cursor: pointer;
-}
-
 .lb-close{ top: 18px; right: 18px; font-size: 30px; }
 .lb-prev{ left: 18px; top: 50%; transform: translateY(-50%); }
 .lb-next{ right: 18px; top: 50%; transform: translateY(-50%); }
 
-.lb-figure{ margin:0; max-width:min(1100px,92vw); max-height:86vh; }
-#lbImg{ width:100%; max-height:78vh; object-fit:contain; border-radius:12px; }
-#lbCaption{ color: rgba(255,255,255,0.85); text-align:center; margin-top:10px; }
+@media (max-width: 700px){
+  .lb-prev, .lb-next{ display: none; }
+}
+
+.lightbox {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.lightbox.is-open {
+  display: flex;
+  opacity: 1;
+}
