@@ -299,3 +299,30 @@ footer {
 @media (max-width: 900px){
   .about{ grid-template-columns: 1fr; }
 }
+/* Contact page */
+.contact-card{
+  margin-top: 30px;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.contact-links{
+  margin-top: 24px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.contact-link{
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(47,111,109,0.10);
+  color: var(--accent);
+  font-size: 14px;
+}
+
+.contact-link:hover{
+  background: rgba(47,111,109,0.18);
+}
